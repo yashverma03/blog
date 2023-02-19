@@ -6,12 +6,8 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-<<<<<<< HEAD
-    "start": "nodemon index.js"
-=======
-    "start": "nodemon index.js",
+    "start": "node index.js",
     "build": "npm i"
->>>>>>> 2f583e17d901c8ccdddae9ec8d88270758db06a7
   },
   "author": "",
   "license": "ISC",
