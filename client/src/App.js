@@ -55,7 +55,7 @@ const App = () => {
             <Route path='/contact' element={<PrivateRoute isAuthenticated={isAuthenticated} />} >
               <Route path='/contact' element={<Contact />} />
             </Route>
-            
+
           </Routes>
         </Box>
       </BrowserRouter>

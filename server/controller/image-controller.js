@@ -1,5 +1,8 @@
 import grid from 'gridfs-stream';
 import mongoose from 'mongoose';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 const url = process.env.BASE_URL || 'http://localhost:8000';
 
