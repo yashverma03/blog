@@ -5,7 +5,7 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-const API_URL = process.env.REACT_APP_BASE_URL || 'http://localhost:8000';
+const API_URL = process.env.REACT_APP_BASE_URL;
 
 const axiosInstance = axios.create({
   baseURL: API_URL,

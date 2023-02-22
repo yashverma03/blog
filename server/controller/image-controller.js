@@ -4,7 +4,7 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-const url = process.env.BASE_URL || 'http://localhost:8000';
+const url = process.env.BASE_URL;
 
 let gfs, gridfsBucket;
 const conn = mongoose.connection;
