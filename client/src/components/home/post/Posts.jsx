@@ -6,8 +6,8 @@ import Post from './Post';
 
 const Posts = () => {
   const [posts, getPosts] = useState([]);
-
   const [searchParams] = useSearchParams();
+
   const category = searchParams.get('category');
 
   useEffect(() => {
@@ -34,7 +34,8 @@ const Posts = () => {
           <Box style={{ color: '878787', margin: '30px 80px', fontSize: 18 }}>
             No data is available for selected category
           </Box>
-        )}
+        )
+      }
     </>
   );
 };

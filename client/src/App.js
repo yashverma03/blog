@@ -11,13 +11,18 @@ import About from './components/about/About';
 import Contact from './components/contact/Contact';
 import Login from './components/account/Login';
 
-const PrivateRoute = ({ isAuthenticated, ...props }) => {
+const PrivateRoute = ({ isAuthenticated }) => {
   const token = sessionStorage.getItem('accessToken');
-  return isAuthenticated && token ?
+  
+  return isAuthenticated && token ? (
     <>
       <Header />
       <Outlet />
-    </> : <Navigate replace to='/account' />;
+    </>
+  ) : (
+    <Navigate replace to='/account' />
+  );
+
 };
 
 const App = () => {

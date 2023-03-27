@@ -19,25 +19,25 @@ const Image = styled('img')({
 });
 
 const StyledFormControl = styled(FormControl)`
-    margin-top: 10px;
-    display: flex;
-    flex-direction: row;
+  margin-top: 10px;
+  display: flex;
+  flex-direction: row;
 `;
 
 const InputTextField = styled(InputBase)`
-    flex: 1;
-    margin: 0 30px;
-    font-size: 25px;
+  flex: 1;
+  margin: 0 30px;
+  font-size: 25px;
 `;
 
 const Textarea = styled(TextareaAutosize)`
-    width: 100%;
-    border: none;
-    margin-top: 50px;
-    font-size: 18px;
-    &:focus-visible {
-        outline: none;
-    }
+  width: 100%;
+  border: none;
+  margin-top: 50px;
+  font-size: 18px;
+  &:focus-visible {
+    outline: none;
+  }
 `;
 
 const initialPost = {
@@ -63,13 +63,14 @@ const CreatePost = () => {
     const getImage = async () => {
       if (file) {
         const data = new FormData();
-        data.append("name", file.name);
-        data.append("file", file);
+        data.append('name', file.name);
+        data.append('file', file);
 
         const response = await API.uploadFile(data);
         post.picture = response.data;
       }
     };
+
     getImage();
     post.categories = location.search?.split('=')[1] || 'All';
     post.username = account.username;
@@ -86,32 +87,18 @@ const CreatePost = () => {
 
   return (
     <Container>
-      <Image src={url} alt="post" />
+      <Image src={url} alt='post' />
 
       <StyledFormControl>
-        <label htmlFor="fileInput">
-          <Add fontSize="large" color="action" />
+        <label htmlFor='fileInput'>
+          <Add fontSize='large' color='action' />
         </label>
-        <input
-          type="file"
-          id="fileInput"
-          style={{ display: "none" }}
-          onChange={(e) => setFile(e.target.files[0])}
-        />
-        <InputTextField
-          onChange={(e) => handleChange(e)}
-          name='title'
-          placeholder="Title"
-        />
-        <Button onClick={() => savePost()} variant="contained" color="primary">Publish</Button>
+        <input type='file' id='fileInput' style={{ display: 'none' }} onChange={(e) => setFile(e.target.files[0])} />
+        <InputTextField onChange={(e) => handleChange(e)} name='title' placeholder='Title' />
+        <Button onClick={() => savePost()} variant='contained' color='primary'> Publish </Button>
       </StyledFormControl>
 
-      <Textarea
-        minRows={5}
-        placeholder="Tell your story..."
-        name='description'
-        onChange={(e) => handleChange(e)}
-      />
+      <Textarea minRows={5} placeholder='Tell your story...' name='description' onChange={(e) => handleChange(e)} />
     </Container>
   );
 };

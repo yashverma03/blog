@@ -10,9 +10,7 @@ const API_URL = process.env.REACT_APP_BASE_URL;
 const axiosInstance = axios.create({
   baseURL: API_URL,
   timeout: 30000,
-  headers: {
-    "content-type": "application/json"
-  }
+  headers: { 'content-type': 'application/json' }
 });
 
 axiosInstance.interceptors.request.use(
@@ -75,7 +73,7 @@ const ProcessError = async (error) => {
       //         let response1 = await axios({
       //             method: requestData.config.method,
       //             url: requestData.config.baseURL + requestData.config.url,
-      //             headers: { "content-type": "application/json", "authorization": getAccessToken() },
+      //             headers: { 'content-type': 'application/json', 'authorization': getAccessToken() },
       //             params: requestData.config.params
       //         });
       //     }
@@ -83,7 +81,7 @@ const ProcessError = async (error) => {
       //     return Promise.reject(error)
       // }
     } else {
-      console.log("ERROR IN RESPONSE: ", error.toJSON());
+      console.log('ERROR IN RESPONSE: ', error.toJSON());
       return {
         isError: true,
         msg: API_NOTIFICATION_MESSAGES.responseFailure,
@@ -92,19 +90,19 @@ const ProcessError = async (error) => {
     }
   } else if (error.request) {
     // The request was made but no response was received
-    console.log("ERROR IN RESPONSE: ", error.toJSON());
+    console.log('ERROR IN RESPONSE: ', error.toJSON());
     return {
       isError: true,
       msg: API_NOTIFICATION_MESSAGES.requestFailure,
-      code: ""
+      code: ''
     };
   } else {
     // Something happened in setting up the request that triggered an Error
-    console.log("ERROR IN RESPONSE: ", error.toJSON());
+    console.log('ERROR IN RESPONSE: ', error.toJSON());
     return {
       isError: true,
       msg: API_NOTIFICATION_MESSAGES.networkError,
-      code: ""
+      code: ''
     };
   }
 };

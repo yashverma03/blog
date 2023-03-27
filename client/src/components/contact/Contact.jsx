@@ -1,6 +1,6 @@
-import { Box, styled, Typography, Link } from "@mui/material";
-import { GitHub, Email } from "@mui/icons-material";
-import LinkedInIcon from "@mui/icons-material/LinkedIn";
+import { Box, styled, Typography, Link } from '@mui/material';
+import { Email } from '@mui/icons-material';
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
 
 const Banner = styled(Box)`
   background-image: url(http://mrtaba.ir/image/bg2.jpg);
@@ -27,18 +27,14 @@ const Contact = () => {
     <Box>
       <Banner />
       <Wrapper>
-        <Typography variant="h3">Getting in touch is easy!</Typography>
-        <Text variant="h5">
+        <Typography variant='h3'>Getting in touch is easy!</Typography>
+        <Text variant='h5'>
           Reach out to me on
-          <Link href="https://www.linkedin.com/in/yashverma2003/" color="inherit" target="_blank">
+          <Link href='https://www.linkedin.com/in/yashverma2003/' color='inherit' target='_blank'>
             <LinkedInIcon />
           </Link>
           or send me an Email
-          <Link
-            href="mailto:vermayash2003@gmail.com?Subject=This is a subject"
-            target="_blank"
-            color="inherit"
-          >
+          <Link href='mailto:vermayash2003@gmail.com?Subject=This is a subject' target='_blank' color='inherit'>
             <Email />
           </Link>
         </Text>

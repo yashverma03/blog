@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
 const TokenSchema = mongoose.Schema({
   token: {
@@ -7,6 +7,6 @@ const TokenSchema = mongoose.Schema({
   },
 });
 
-const token = mongoose.model("token", TokenSchema);
+const token = mongoose.model('token', TokenSchema);
 
 export default token;

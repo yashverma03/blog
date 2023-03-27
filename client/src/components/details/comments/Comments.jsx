@@ -5,8 +5,8 @@ import { API } from '../../../service/api';
 import Comment from './Comment';
 
 const Container = styled(Box)`
-    margin-top: 100px;
-    display: flex;
+  margin-top: 100px;
+  display: flex;
 `;
 
 const Image = styled('img')({
@@ -16,9 +16,9 @@ const Image = styled('img')({
 });
 
 const StyledTextArea = styled(TextareaAutosize)`
-    height: 100px !important;
-    width: 100%; 
-    margin: 0 20px;
+  height: 100px !important;
+  width: 100%; 
+  margin: 0 20px;
 `;
 
 const initialValue = {
@@ -44,6 +44,7 @@ const Comments = ({ post }) => {
         setComments(response.data);
       }
     };
+
     getData();
   }, [toggle, post]);
 
@@ -65,22 +66,9 @@ const Comments = ({ post }) => {
   return (
     <Box>
       <Container>
-        <Image src={url} alt="dp" />
-        <StyledTextArea
-          rowsMin={5}
-          placeholder="what's on your mind?"
-          onChange={(e) => handleChange(e)}
-          value={comment.comments}
-        />
-        <Button
-          variant="contained"
-          color="primary"
-          size="medium"
-          style={{ height: 40 }}
-          onClick={(e) => addComment(e)}
-        >
-          Post
-        </Button>
+        <Image src={url} alt='dp' />
+        <StyledTextArea rowsMin={5} placeholder="what's on your mind?" onChange={(e) => handleChange(e)} value={comment.comments} />
+        <Button variant='contained' color='primary' size='medium' style={{ height: 40 }} onClick={(e) => addComment(e)}> Post </Button>
       </Container>
       <Box>
         {

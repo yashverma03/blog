@@ -20,24 +20,24 @@ const Image = styled('img')({
 });
 
 const EditIcon = styled(Edit)`
-    margin: 5px;
-    padding: 5px;
-    border: 1px solid #878787;
-    border-radius: 10px;
+  margin: 5px;
+  padding: 5px;
+  border: 1px solid #878787;
+  border-radius: 10px;
 `;
 
 const DeleteIcon = styled(Delete)`
-    margin: 5px;
-    padding: 5px;
-    border: 1px solid #878787;
-    border-radius: 10px;
+  margin: 5px;
+  padding: 5px;
+  border: 1px solid #878787;
+  border-radius: 10px;
 `;
 
 const Heading = styled(Typography)`
-    font-size: 38px;
-    font-weight: 600;
-    text-align: center;
-    margin: 50px 0 10px 0;
+  font-size: 38px;
+  font-weight: 600;
+  text-align: center;
+  margin: 50px 0 10px 0;
 `;
 
 const Author = styled(Box)(({ theme }) => ({
@@ -76,13 +76,15 @@ const DetailView = () => {
 
   return (
     <Container>
-      <Image src={post.picture || url} alt="post" />
+      <Image src={post.picture || url} alt='post' />
       <Box style={{ float: 'right' }}>
         {
           account.username === post.username &&
           <>
-            <Link to={`/update/${post._id}`}><EditIcon color="primary" /></Link>
-            <DeleteIcon onClick={() => deleteBlog()} color="error" />
+            <Link to={`/update/${post._id}`}>
+              <EditIcon color='primary' />
+            </Link>
+            <DeleteIcon onClick={() => deleteBlog()} color='error' />
           </>
         }
       </Box>
