@@ -1,3 +1,3 @@
-Deployed link- https://blog-website-007.onrender.com
+Deployed link- https://blog-app-007.onrender.com
 
-![Blog-website image](https://user-images.githubusercontent.com/94443269/220638427-ecc9bc5e-2720-4a75-8e7b-12a4261221d7.png)
+![image](https://user-images.githubusercontent.com/94443269/229291601-dc7516a3-ca2c-4d93-bab9-af08c23c7a00.png)
