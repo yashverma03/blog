@@ -26,12 +26,12 @@ const App = () => {
 
               {/* Public routes */}
               <Route path='/account' element={<Login isUserAuthenticated={isUserAuthenticated} />} />
-              <Route path='/' element={<Home />} />
               <Route path='/about' element={<About />} />
               <Route path='/contact' element={<Contact />} />
 
               {/* Private routes */}
               <Route path='/' element={<PrivateRoute isAuthenticated={isAuthenticated} />}>
+                <Route path='/' element={<Home />} />
                 <Route path='/create' element={<CreatePost />} />
                 <Route path='/details/:id' element={<DetailView />} />
                 <Route path='/update/:id' element={<Update />} />
