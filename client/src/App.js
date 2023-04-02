@@ -10,6 +10,7 @@ import About from './components/about/About';
 import Contact from './components/contact/Contact';
 import Login from './components/account/Login';
 import PrivateRoute from './components/PrivateRoute';
+import Header from './components/header/Header';
 
 const App = () => {
 
@@ -20,20 +21,20 @@ const App = () => {
       <DataProvider>
         <BrowserRouter>
           <Box style={{ marginTop: 64 }}>
-
+            {<Header isAuthenticated={isAuthenticated} />}
             <Routes>
-              
+
               {/* Public routes */}
               <Route path='/account' element={<Login isUserAuthenticated={isUserAuthenticated} />} />
+              <Route path='/' element={<Home />} />
+              <Route path='/about' element={<About />} />
+              <Route path='/contact' element={<Contact />} />
 
               {/* Private routes */}
               <Route path='/' element={<PrivateRoute isAuthenticated={isAuthenticated} />}>
-                <Route path='/' element={<Home />} />
                 <Route path='/create' element={<CreatePost />} />
                 <Route path='/details/:id' element={<DetailView />} />
                 <Route path='/update/:id' element={<Update />} />
-                <Route path='/about' element={<About />} />
-                <Route path='/contact' element={<Contact />} />
               </Route>
 
             </Routes>
