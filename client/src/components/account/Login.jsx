@@ -112,7 +112,7 @@ const Login = ({ isUserAuthenticated }) => {
 
   const signupUser = async () => {
     let response = await API.userSignup(signup);
-    
+
     if (response.isSuccess) {
       showError('');
       setSignup(signupInitialValues);
@@ -134,7 +134,7 @@ const Login = ({ isUserAuthenticated }) => {
           account === 'login' ? (
             <Wrapper>
               <TextField variant='standard' value={login.username} onChange={(e) => onValueChange(e)} name='username' label='Enter Username' />
-              <TextField variant='standard' value={login.password} onChange={(e) => onValueChange(e)} name='password' label='Enter Password' />
+              <TextField variant='standard' type='password' value={login.password} onChange={(e) => onValueChange(e)} name='password' label='Enter Password' />
 
               {error && <Error>{error}</Error>}
 
@@ -146,7 +146,7 @@ const Login = ({ isUserAuthenticated }) => {
             <Wrapper>
               <TextField variant='standard' onChange={(e) => onInputChange(e)} name='name' label='Enter Name' />
               <TextField variant='standard' onChange={(e) => onInputChange(e)} name='username' label='Enter Username' />
-              <TextField variant='standard' onChange={(e) => onInputChange(e)} name='password' label='Enter Password' />
+              <TextField variant='standard' type='password' onChange={(e) => onInputChange(e)} name='password' label='Enter Password' />
 
               <SignupButton onClick={() => signupUser()} >Signup</SignupButton>
               <Text style={{ textAlign: 'center' }}>OR</Text>
