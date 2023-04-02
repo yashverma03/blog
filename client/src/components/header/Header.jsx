@@ -15,7 +15,8 @@ const Container = styled(Toolbar)`
   }
 `;
 
-const Header = () => {
+const Header = ({ isAuthenticated }) => {
+  const element = isAuthenticated ? "LOGOUT" : "LOGIN";
 
   return (
     <Component>
@@ -23,7 +24,7 @@ const Header = () => {
         <Link to='/'>HOME</Link>
         <Link to='/about'>ABOUT</Link>
         <Link to='/contact'>CONTACT</Link>
-        <Link to='/account'>LOGOUT</Link>
+        <Link to='/account'>{element}</Link>
       </Container>
     </Component>
   );
