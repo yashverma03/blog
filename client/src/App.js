@@ -28,10 +28,10 @@ const App = () => {
               <Route path='/account' element={<Login isUserAuthenticated={isUserAuthenticated} />} />
               <Route path='/about' element={<About />} />
               <Route path='/contact' element={<Contact />} />
+              <Route path='/' element={<Home />} />
 
               {/* Private routes */}
               <Route path='/' element={<PrivateRoute isAuthenticated={isAuthenticated} />}>
-                <Route path='/' element={<Home />} />
                 <Route path='/create' element={<CreatePost />} />
                 <Route path='/details/:id' element={<DetailView />} />
                 <Route path='/update/:id' element={<Update />} />
