@@ -6,7 +6,7 @@ import { DataContext } from '../../context/DataProvider';
 
 const Component = styled(Box)`
   width: 400px;
-  margin: auto;
+  margin: 100px auto auto;
   box-shadow: 5px 2px 5px 2px rgb(0 0 0/ 0.6);
 `;
 
@@ -138,9 +138,9 @@ const Login = ({ isUserAuthenticated }) => {
 
               {error && <Error>{error}</Error>}
 
-              <LoginButton variant='contained' onClick={() => loginUser()} >Login</LoginButton>
-              <Text style={{ textAlign: 'center' }}>OR</Text>
-              <SignupButton onClick={() => toggleSignup()} style={{ marginBottom: 50 }}>Create an account</SignupButton>
+              <LoginButton variant='contained' onClick={() => loginUser()}> Login </LoginButton>
+              <Text style={{ textAlign: 'center' }}> OR </Text>
+              <SignupButton onClick={() => toggleSignup()} style={{ marginBottom: 50 }}> Create an account </SignupButton>
             </Wrapper>
           ) : (
             <Wrapper>
@@ -148,9 +148,9 @@ const Login = ({ isUserAuthenticated }) => {
               <TextField variant='standard' onChange={(e) => onInputChange(e)} name='username' label='Enter Username' />
               <TextField variant='standard' type='password' onChange={(e) => onInputChange(e)} name='password' label='Enter Password' />
 
-              <SignupButton onClick={() => signupUser()} >Signup</SignupButton>
+              <SignupButton onClick={() => signupUser()}> Signup </SignupButton>
               <Text style={{ textAlign: 'center' }}>OR</Text>
-              <LoginButton variant='contained' onClick={() => toggleSignup()}>Already have an account</LoginButton>
+              <LoginButton variant='contained' onClick={() => toggleSignup()}> Already have an account </LoginButton>
             </Wrapper>
           )
         }
