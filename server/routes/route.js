@@ -19,7 +19,7 @@ router.put('/update/:id', authenticateToken, updatePost);
 router.delete('/delete/:id', authenticateToken, deletePost);
 
 router.get('/post/:id', authenticateToken, getPost);
-router.get('/posts', authenticateToken, getAllPosts);
+router.get('/posts', getAllPosts);
 
 router.post('/file/upload', upload.single('file'), uploadImage);
 router.get('/file/:filename', getImage);
