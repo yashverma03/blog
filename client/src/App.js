@@ -21,7 +21,7 @@ const App = () => {
       <DataProvider>
         <BrowserRouter>
           <Box style={{ marginTop: 64 }}>
-            {<Header isAuthenticated={isAuthenticated} />}
+            <Header isAuthenticated={isAuthenticated} />
             <Routes>
 
               {/* Public routes */}

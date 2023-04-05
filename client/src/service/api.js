@@ -5,12 +5,15 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
+// URL of server
 const API_URL = process.env.REACT_APP_BASE_URL;
 
 const axiosInstance = axios.create({
   baseURL: API_URL,
   timeout: 30000,
-  headers: { 'content-type': 'application/json' }
+  headers: {
+    'content-type': 'application/json'
+  }
 });
 
 axiosInstance.interceptors.request.use(
@@ -53,33 +56,11 @@ const processResponse = (response) => {
   }
 };
 
-// If success -> returns { isSuccess: true, data: object }
-// If fail -> returns { isError: true, status: string, msg: string, code: int }
 const ProcessError = async (error) => {
   if (error.response) {
-    // Request made and server responded with a status code 
-    // that falls out of the range of 2xx
+    // Request made and server responded with a status code that falls out of the range of 2xx
     if (error.response?.status === 403) {
-      // const { url, config } = error.response;
-      // console.log(error);
-      // try {
-      //     let response = await API.getRefreshToken({ token: getRefreshToken() });
-      //     if (response.isSuccess) {
       sessionStorage.clear();
-      //         setAccessToken(response.data.accessToken);
-
-      //         const requestData = error.toJSON();
-
-      //         let response1 = await axios({
-      //             method: requestData.config.method,
-      //             url: requestData.config.baseURL + requestData.config.url,
-      //             headers: { 'content-type': 'application/json', 'authorization': getAccessToken() },
-      //             params: requestData.config.params
-      //         });
-      //     }
-      // } catch (error) {
-      //     return Promise.reject(error)
-      // }
     } else {
       console.log('ERROR IN RESPONSE: ', error.toJSON());
       return {
