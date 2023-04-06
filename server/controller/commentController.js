@@ -1,8 +1,8 @@
-import Comment from '../model/comment.js';
+import commentModel from '../model/commentModel.js';
 
 export const newComment = async (request, response) => {
   try {
-    const comment = await new Comment(request.body);
+    const comment = await new commentModel(request.body);
     comment.save();
 
     response.status(200).json('Comment saved successfully');
@@ -13,7 +13,7 @@ export const newComment = async (request, response) => {
 
 export const getComments = async (request, response) => {
   try {
-    const comments = await Comment.find({ postId: request.params.id });
+    const comments = await commentModel.find({ postId: request.params.id });
 
     response.status(200).json(comments);
   } catch (error) {
@@ -23,10 +23,10 @@ export const getComments = async (request, response) => {
 
 export const deleteComment = async (request, response) => {
   try {
-    const comment = await Comment.findById(request.params.id);
+    const comment = await commentModel.findById(request.params.id);
     await comment.delete();
 
-    response.status(200).json('comment deleted successfully');
+    response.status(200).json('Comment deleted successfully');
   } catch (error) {
     response.status(500).json(error);
   }

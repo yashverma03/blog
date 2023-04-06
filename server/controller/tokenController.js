@@ -1,6 +1,6 @@
 import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
-import Token from '../model/token.js';
+import tokenModel from '../model/tokenModel.js';
 
 dotenv.config();
 
@@ -29,7 +29,7 @@ export const createNewToken = async (request, response) => {
     return response.status(401).json({ msg: 'Refresh token is missing' });
   }
 
-  const token = await Token.findOne({ token: refreshToken });
+  const token = await tokenModel.findOne({ token: refreshToken });
 
   if (!token) {
     return response.status(404).json({ msg: 'Refresh token is not valid' });

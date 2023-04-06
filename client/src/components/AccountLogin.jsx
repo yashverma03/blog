@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { TextField, Box, Button, Typography, styled } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
-import { API } from '../../service/api';
-import { DataContext } from '../../context/DataProvider';
+import { API } from '../utils/api';
+import { DataContext } from '../utils/DataProvider';
 
 const Component = styled(Box)`
   width: 400px;
@@ -69,7 +69,7 @@ const signupInitialValues = {
   password: '',
 };
 
-const Login = ({ isUserAuthenticated }) => {
+const AccountLogin = ({ isUserAuthenticated }) => {
   const [login, setLogin] = useState(loginInitialValues);
   const [signup, setSignup] = useState(signupInitialValues);
   const [error, showError] = useState('');
@@ -159,4 +159,4 @@ const Login = ({ isUserAuthenticated }) => {
   );
 };
 
-export default Login;
+export default AccountLogin;

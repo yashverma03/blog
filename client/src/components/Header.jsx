@@ -16,7 +16,7 @@ const Container = styled(Toolbar)`
 `;
 
 const Header = ({ isAuthenticated }) => {
-  const element = isAuthenticated ? "LOGOUT" : "LOGIN";
+  const element = isAuthenticated ? 'LOGOUT' : 'LOGIN';
 
   return (
     <Component>

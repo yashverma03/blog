@@ -1,6 +1,6 @@
 import { Button, Table, TableHead, TableRow, TableCell, TableBody, styled } from '@mui/material';
 import { Link, useSearchParams } from 'react-router-dom';
-import { categories } from '../../constants/data';
+import { categoriesData } from '../utils/data';
 
 const StyledTable = styled(Table)`
   border: 1px solid rgba(224, 224, 224, 1);
@@ -41,7 +41,7 @@ const Categories = () => {
         </TableHead>
         <TableBody>
           {
-            categories.map(category => (
+            categoriesData.map(category => (
               <TableRow key={category.id}>
                 <TableCell>
                   <StyledLink to={`/?category=${category.type}`}>

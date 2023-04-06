@@ -1,8 +1,8 @@
-import Post from '../model/post.js';
+import postModel from '../model/postModel.js';
 
 export const createPost = async (request, response) => {
   try {
-    const post = await new Post(request.body);
+    const post = await new postModel(request.body);
     post.save();
 
     response.status(200).json('Post saved successfully');
@@ -13,13 +13,13 @@ export const createPost = async (request, response) => {
 
 export const updatePost = async (request, response) => {
   try {
-    const post = await Post.findById(request.params.id);
+    const post = await postModel.findById(request.params.id);
 
     if (!post) {
       response.status(404).json({ msg: 'Post not found' });
     }
 
-    await Post.findByIdAndUpdate(request.params.id, { $set: request.body });
+    await postModel.findByIdAndUpdate(request.params.id, { $set: request.body });
 
     response.status(200).json('post updated successfully');
   } catch (error) {
@@ -29,7 +29,7 @@ export const updatePost = async (request, response) => {
 
 export const deletePost = async (request, response) => {
   try {
-    const post = await Post.findById(request.params.id);
+    const post = await postModel.findById(request.params.id);
 
     await post.delete();
 
@@ -41,7 +41,7 @@ export const deletePost = async (request, response) => {
 
 export const getPost = async (request, response) => {
   try {
-    const post = await Post.findById(request.params.id);
+    const post = await postModel.findById(request.params.id);
 
     response.status(200).json(post);
   } catch (error) {
@@ -56,11 +56,11 @@ export const getAllPosts = async (request, response) => {
 
   try {
     if (username) {
-      posts = await Post.find({ username: username });
+      posts = await postModel.find({ username: username });
     } else if (category) {
-      posts = await Post.find({ categories: category });
+      posts = await postModel.find({ categories: category });
     } else {
-      posts = await Post.find({});
+      posts = await postModel.find({});
     }
 
     response.status(200).json(posts);

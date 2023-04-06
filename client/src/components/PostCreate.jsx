@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import { Box, styled, TextareaAutosize, Button, FormControl, InputBase } from '@mui/material';
+import React, { useState, useEffect, useContext } from 'react';
+import { styled, Box, TextareaAutosize, Button, InputBase, FormControl } from '@mui/material';
 import { AddCircle as Add } from '@mui/icons-material';
-import { useNavigate, useParams } from 'react-router-dom';
-import { API } from '../../service/api';
+import { useNavigate, useLocation } from 'react-router-dom';
+import { API } from '../utils/api';
+import { DataContext } from '../utils/DataProvider';
 
 const Container = styled(Box)(({ theme }) => ({
   margin: '50px 100px',
@@ -29,7 +30,7 @@ const InputTextField = styled(InputBase)`
   font-size: 25px;
 `;
 
-const StyledTextArea = styled(TextareaAutosize)`
+const Textarea = styled(TextareaAutosize)`
   width: 100%;
   border: none;
   margin-top: 50px;
@@ -43,32 +44,20 @@ const initialPost = {
   title: '',
   description: '',
   picture: '',
-  username: 'codeforinterview',
-  categories: 'Tech',
+  username: '',
+  categories: '',
   createdDate: new Date()
 };
 
-const Update = () => {
+const PostCreate = () => {
   const navigate = useNavigate();
+  const location = useLocation();
 
   const [post, setPost] = useState(initialPost);
   const [file, setFile] = useState('');
-  const [imageURL, setImageURL] = useState('');
+  const { account } = useContext(DataContext);
 
-  const { id } = useParams();
-
-  const url = 'https://images.unsplash.com/photo-1543128639-4cb7e6eeef1b?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8bGFwdG9wJTIwc2V0dXB8ZW58MHx8MHx8&ixlib=rb-1.2.1&w=1000&q=80';
-
-  useEffect(() => {
-    const fetchData = async () => {
-      let response = await API.getPostById(id);
-      if (response.isSuccess) {
-        setPost(response.data);
-      }
-    };
-
-    fetchData();
-  }, []);
+  const url = post.picture ? post.picture : 'https://images.unsplash.com/photo-1543128639-4cb7e6eeef1b?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8bGFwdG9wJTIwc2V0dXB8ZW58MHx8MHx8&ixlib=rb-1.2.1&w=1000&q=80';
 
   useEffect(() => {
     const getImage = async () => {
@@ -78,19 +67,18 @@ const Update = () => {
         data.append('file', file);
 
         const response = await API.uploadFile(data);
-        if (response.isSuccess) {
-          post.picture = response.data;
-          setImageURL(response.data);
-        }
+        post.picture = response.data;
       }
     };
 
     getImage();
+    post.categories = location.search?.split('=')[1] || 'All';
+    post.username = account.username;
   }, [file]);
 
-  const updateBlogPost = async () => {
-    await API.updatePost(post);
-    navigate(`/details/${id}`);
+  const savePost = async () => {
+    await API.createPost(post);
+    navigate('/');
   };
 
   const handleChange = (e) => {
@@ -99,20 +87,20 @@ const Update = () => {
 
   return (
     <Container>
-      <Image src={post.picture || url} alt='post' />
+      <Image src={url} alt='post' />
 
       <StyledFormControl>
         <label htmlFor='fileInput'>
           <Add fontSize='large' color='action' />
         </label>
         <input type='file' id='fileInput' style={{ display: 'none' }} onChange={(e) => setFile(e.target.files[0])} />
-        <InputTextField onChange={(e) => handleChange(e)} value={post.title} name='title' placeholder='Title' />
-        <Button onClick={() => updateBlogPost()} variant='contained' color='primary'> Update </Button>
+        <InputTextField onChange={(e) => handleChange(e)} name='title' placeholder='Title' />
+        <Button onClick={() => savePost()} variant='contained' color='primary'> Publish </Button>
       </StyledFormControl>
 
-      <StyledTextArea rowsMin={5} placeholder='Tell your story...' name='description' onChange={(e) => handleChange(e)} value={post.description} />
+      <Textarea minRows={5} placeholder='Tell your story...' name='description' onChange={(e) => handleChange(e)} />
     </Container>
   );
 };
 
-export default Update;
+export default PostCreate;

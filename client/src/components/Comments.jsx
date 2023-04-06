@@ -1,8 +1,8 @@
 import { useState, useEffect, useContext } from 'react';
 import { Box, TextareaAutosize, Button, styled } from '@mui/material';
-import { DataContext } from '../../../context/DataProvider';
-import { API } from '../../../service/api';
-import Comment from './Comment';
+import { DataContext } from '../utils/DataProvider';
+import { API } from '../utils/api';
+import CommentDetails from './CommentDetails';
 
 const Container = styled(Box)`
   margin-top: 100px;
@@ -73,7 +73,7 @@ const Comments = ({ post }) => {
       <Box>
         {
           comments && comments.length > 0 && comments.map(comment => (
-            <Comment comment={comment} setToggle={setToggle} />
+            <CommentDetails comment={comment} setToggle={setToggle} />
           ))
         }
       </Box>

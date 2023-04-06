@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-const Connection = async () => {
+const mongodbConnection = async () => {
   const URL = process.env.DB_URI;
 
   try {
@@ -11,4 +11,4 @@ const Connection = async () => {
   }
 };
 
-export default Connection;
+export default mongodbConnection;

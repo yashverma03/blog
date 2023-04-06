@@ -1,8 +1,8 @@
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
-import Token from '../model/token.js';
-import User from '../model/user.js';
+import tokenModel from '../model/tokenModel.js';
+import userModel from '../model/userModel.js';
 
 dotenv.config();
 
@@ -16,7 +16,7 @@ export const signupUser = async (request, response) => {
       password: hashedPassword,
     };
 
-    const newUser = new User(user);
+    const newUser = new userModel(user);
     await newUser.save();
 
     return response.status(200).json({ msg: 'Signup successfull' });
@@ -26,7 +26,7 @@ export const signupUser = async (request, response) => {
 };
 
 export const loginUser = async (request, response) => {
-  let user = await User.findOne({ username: request.body.username });
+  let user = await userModel.findOne({ username: request.body.username });
 
   if (!user) {
     return response.status(400).json({ msg: 'Username does not match' });
@@ -39,7 +39,7 @@ export const loginUser = async (request, response) => {
       const accessToken = jwt.sign(user.toJSON(), process.env.ACCESS_SECRET_KEY, { expiresIn: '7d' });
       const refreshToken = jwt.sign(user.toJSON(), process.env.REFRESH_SECRET_KEY);
 
-      const newToken = new Token({ token: refreshToken });
+      const newToken = new tokenModel({ token: refreshToken });
       await newToken.save();
 
       response.status(200).json({
@@ -58,7 +58,7 @@ export const loginUser = async (request, response) => {
 
 export const logoutUser = async (request, response) => {
   const token = request.body.token;
-  await Token.deleteOne({ token: token });
+  await tokenModel.deleteOne({ token: token });
 
   response.status(204).json({ msg: 'logout successfull' });
 };

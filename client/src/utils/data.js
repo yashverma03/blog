@@ -1,4 +1,4 @@
-export const categories = [
+export const categoriesData = [
   { id: 2, type: 'Movies' },
   { id: 3, type: 'Sports' },
   { id: 4, type: 'Tech' },

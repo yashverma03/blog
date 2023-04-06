@@ -1,8 +1,8 @@
 import { useContext } from 'react';
 import { Typography, Box, styled } from '@mui/material';
 import { Delete } from '@mui/icons-material';
-import { API } from '../../../service/api';
-import { DataContext } from '../../../context/DataProvider';
+import { API } from '../utils/api';
+import { DataContext } from '../utils/DataProvider';
 
 const Component = styled(Box)`
   margin-top: 30px;
@@ -30,7 +30,7 @@ const DeleteIcon = styled(Delete)`
   margin-left: auto;
 `;
 
-const Comment = ({ comment, setToggle }) => {
+const CommentDetails = ({ comment, setToggle }) => {
 
   const { account } = useContext(DataContext);
 
@@ -51,4 +51,4 @@ const Comment = ({ comment, setToggle }) => {
   );
 };
 
-export default Comment;
+export default CommentDetails;

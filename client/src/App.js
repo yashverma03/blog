@@ -1,16 +1,16 @@
 import { useState } from 'react';
 import { Box } from '@mui/material';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import DataProvider from './context/DataProvider';
-import Home from './components/home/Home';
-import CreatePost from './components/create/CreatePost';
-import DetailView from './components/details/DetailView';
-import Update from './components/create/Update';
-import About from './components/about/About';
-import Contact from './components/contact/Contact';
-import Login from './components/account/Login';
-import PrivateRoute from './components/PrivateRoute';
-import Header from './components/header/Header';
+import DataProvider from './utils/DataProvider';
+import Home from './components/Home';
+import PostCreate from './components/PostCreate';
+import PostDetailView from './components/PostDetailView';
+import PostUpdate from './components/PostUpdate';
+import About from './components/About';
+import Contact from './components/Contact';
+import Login from './components/AccountLogin';
+import PrivateRoute from './utils/PrivateRoute';
+import Header from './components/Header';
 
 const App = () => {
 
@@ -32,9 +32,9 @@ const App = () => {
 
               {/* Private routes */}
               <Route path='/' element={<PrivateRoute isAuthenticated={isAuthenticated} />}>
-                <Route path='/create' element={<CreatePost />} />
-                <Route path='/details/:id' element={<DetailView />} />
-                <Route path='/update/:id' element={<Update />} />
+                <Route path='/create' element={<PostCreate />} />
+                <Route path='/details/:id' element={<PostDetailView />} />
+                <Route path='/update/:id' element={<PostUpdate />} />
               </Route>
 
             </Routes>

@@ -2,9 +2,9 @@ import { useState, useEffect, useContext } from 'react';
 import { Box, Typography, styled } from '@mui/material';
 import { Delete, Edit } from '@mui/icons-material';
 import { Link, useNavigate, useParams } from 'react-router-dom';
-import { API } from '../../service/api';
-import { DataContext } from '../../context/DataProvider';
-import Comments from './comments/Comments';
+import { API } from '../utils/api';
+import { DataContext } from '../utils/DataProvider';
+import Comments from './Comments';
 
 const Container = styled(Box)(({ theme }) => ({
   margin: '50px 100px',
@@ -49,7 +49,7 @@ const Author = styled(Box)(({ theme }) => ({
   },
 }));
 
-const DetailView = () => {
+const PostDetailView = () => {
   const url = 'https://images.unsplash.com/photo-1543128639-4cb7e6eeef1b?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8bGFwdG9wJTIwc2V0dXB8ZW58MHx8MHx8&ixlib=rb-1.2.1&w=1000&q=80';
 
   const [post, setPost] = useState({});
@@ -65,7 +65,7 @@ const DetailView = () => {
         setPost(response.data);
       }
     };
-    
+
     fetchData();
   }, []);
 
@@ -103,4 +103,4 @@ const DetailView = () => {
   );
 };
 
-export default DetailView;
+export default PostDetailView;
