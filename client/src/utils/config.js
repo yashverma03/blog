@@ -1,4 +1,4 @@
-// API NOTIFICATION MESSAGES
+// API notification Messages
 export const API_NOTIFICATION_MESSAGES = {
   loading: {
     title: 'Loading...',
@@ -22,7 +22,7 @@ export const API_NOTIFICATION_MESSAGES = {
   }
 };
 
-// API SERVICE URL { url: '/', method: 'POST/GET/PUT/DELETE' }
+// API service URL { url: '/', method: 'POST/GET/PUT/DELETE' }
 export const SERVICE_URLS = {
   userLogin: { url: '/login', method: 'POST' },
   userSignup: { url: '/signup', method: 'POST' },
