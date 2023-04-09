@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { API_NOTIFICATION_MESSAGES, SERVICE_URLS } from './config';
+import { APIMessages, axiosAPICalls } from './config';
 import { getAccessToken, getType } from './tokens';
 import dotenv from 'dotenv';
 
@@ -17,7 +17,7 @@ const axiosInstance = axios.create({
 });
 
 axiosInstance.interceptors.request.use(
-  function (config) {
+  (config) => {
     if (config.TYPE.params) {
       config.params = config.TYPE.params;
     } else if (config.TYPE.query) {
@@ -25,24 +25,20 @@ axiosInstance.interceptors.request.use(
     }
     return config;
   },
-  function (error) {
+  (error) => {
     return Promise.reject(error);
   }
 );
 
 axiosInstance.interceptors.response.use(
-  function (response) {
-    // Stop global loader here
+  (response) => {
     return processResponse(response);
   },
-  function (error) {
-    // Stop global loader here
-    return Promise.reject(ProcessError(error));
+  (error) => {
+    return Promise.reject(processError(error));
   }
 );
 
-// If success -> returns { isSuccess: true, data: object }
-// If fail -> returns { isFailure: true, status: string, msg: string, code: int }
 const processResponse = (response) => {
   if (response?.status === 200) {
     return { isSuccess: true, data: response.data };
@@ -56,33 +52,33 @@ const processResponse = (response) => {
   }
 };
 
-const ProcessError = async (error) => {
+const processError = async (error) => {
   if (error.response) {
     // Request made and server responded with a status code that falls out of the range of 2xx
     if (error.response?.status === 403) {
       sessionStorage.clear();
     } else {
-      console.log('ERROR IN RESPONSE: ', error.toJSON());
+      console.log('Error in response ', error.toJSON());
       return {
         isError: true,
-        msg: API_NOTIFICATION_MESSAGES.responseFailure,
+        msg: APIMessages.responseFailure,
         code: error.response.status
       };
     }
   } else if (error.request) {
     // The request was made but no response was received
-    console.log('ERROR IN RESPONSE: ', error.toJSON());
+    console.log('Error in response ', error.toJSON());
     return {
       isError: true,
-      msg: API_NOTIFICATION_MESSAGES.requestFailure,
+      msg: APIMessages.requestFailure,
       code: ''
     };
   } else {
-    // Something happened in setting up the request that triggered an Error
-    console.log('ERROR IN RESPONSE: ', error.toJSON());
+    // Something happened in setting up the request that triggered an error
+    console.log('Error in response ', error.toJSON());
     return {
       isError: true,
-      msg: API_NOTIFICATION_MESSAGES.networkError,
+      msg: APIMessages.networkError,
       code: ''
     };
   }
@@ -90,28 +86,15 @@ const ProcessError = async (error) => {
 
 const API = {};
 
-for (const [key, value] of Object.entries(SERVICE_URLS)) {
-  API[key] = (body, showUploadProgress, showDownloadProgress) =>
+for (const [key, value] of Object.entries(axiosAPICalls)) {
+  API[key] = (body) =>
     axiosInstance({
       method: value.method,
       url: value.url,
       data: value.method === 'DELETE' ? '' : body,
-      responseType: value.responseType,
+      TYPE: getType(value, body),
       headers: {
         authorization: getAccessToken(),
-      },
-      TYPE: getType(value, body),
-      onUploadProgress: function (progressEvent) {
-        if (showUploadProgress) {
-          let percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total);
-          showUploadProgress(percentCompleted);
-        }
-      },
-      onDownloadProgress: function (progressEvent) {
-        if (showDownloadProgress) {
-          let percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total);
-          showDownloadProgress(percentCompleted);
-        }
       }
     });
 }

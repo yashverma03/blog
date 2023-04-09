@@ -1,5 +1,20 @@
-// API notification Messages
-export const API_NOTIFICATION_MESSAGES = {
+// Axios API calls { name of API: { url: '/', method: 'post/get/put/delete' } }
+export const axiosAPICalls = {
+  userLogin: { url: 'login', method: 'post' },
+  userSignup: { url: 'signup', method: 'post' },
+  getAllPosts: { url: 'posts', method: 'get', params: true },
+  getRefreshToken: { url: 'token', method: 'post' },
+  uploadFile: { url: 'file/upload', method: 'post' },
+  createPost: { url: 'create', method: 'post' },
+  deletePost: { url: 'delete', method: 'delete', query: true },
+  getPostById: { url: 'post', method: 'get', query: true },
+  newComment: { url: 'comment/new', method: 'post' },
+  getAllComments: { url: 'comments', method: 'get', query: true },
+  deleteComment: { url: 'comment/delete', method: 'delete', query: true },
+  updatePost: { url: 'update', method: 'put', query: true }
+};
+
+export const APIMessages = {
   loading: {
     title: 'Loading...',
     message: 'Data is being loaded. Please wait'
@@ -20,20 +35,4 @@ export const API_NOTIFICATION_MESSAGES = {
     title: 'Error!',
     message: 'Unable to connect to the server. Please check internet connectivity and try again.'
   }
-};
-
-// API service URL { url: '/', method: 'POST/GET/PUT/DELETE' }
-export const SERVICE_URLS = {
-  userLogin: { url: '/login', method: 'POST' },
-  userSignup: { url: '/signup', method: 'POST' },
-  getAllPosts: { url: '/posts', method: 'GET', params: true },
-  getRefreshToken: { url: '/token', method: 'POST' },
-  uploadFile: { url: 'file/upload', method: 'POST' },
-  createPost: { url: 'create', method: 'POST' },
-  deletePost: { url: 'delete', method: 'DELETE', query: true },
-  getPostById: { url: 'post', method: 'GET', query: true },
-  newComment: { url: '/comment/new', method: 'POST' },
-  getAllComments: { url: 'comments', method: 'GET', query: true },
-  deleteComment: { url: 'comment/delete', method: 'DELETE', query: true },
-  updatePost: { url: 'update', method: 'PUT', query: true }
 };
