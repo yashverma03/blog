@@ -16,7 +16,8 @@ const Container = styled(Box)(({ theme }) => ({
 const Image = styled('img')({
   width: '100%',
   height: '50vh',
-  objectFit: 'cover'
+  marginTop: '1vh',
+  objectFit: 'scale-down'
 });
 
 const EditIcon = styled(Edit)`
