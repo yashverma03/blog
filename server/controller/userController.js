@@ -57,8 +57,12 @@ export const loginUser = async (request, response) => {
 };
 
 export const logoutUser = async (request, response) => {
-  const token = request.body.token;
-  await tokenModel.deleteOne({ token: token });
+  try {
+    const token = request.body.token;
+    await tokenModel.deleteOne({ token: token });
 
-  response.status(204).json({ msg: 'logout successfull' });
+    response.status(204).json({ msg: 'logout successfull' });
+  } catch (error) {
+    response.status(500).json({ msg: 'error while logging out' });
+  }
 };

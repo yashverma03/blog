@@ -8,7 +8,7 @@ export const authenticateToken = (request, response, next) => {
   const authHeader = request.headers['authorization'];
   const token = authHeader && authHeader.split(' ')[1];
 
-  if (token == null) {
+  if (token === null) {
     return response.status(401).json({ msg: 'token is missing' });
   }
 
@@ -29,19 +29,24 @@ export const createNewToken = async (request, response) => {
     return response.status(401).json({ msg: 'Refresh token is missing' });
   }
 
-  const token = await tokenModel.findOne({ token: refreshToken });
+  try {
+    const token = await tokenModel.findOne({ token: refreshToken });
 
-  if (!token) {
-    return response.status(404).json({ msg: 'Refresh token is not valid' });
-  }
-
-  jwt.verify(token.token, process.env.REFRESH_SECRET_KEY, (error, user) => {
-    if (error) {
-      response.status(500).json({ msg: 'invalid refresh token' });
+    if (!token) {
+      return response.status(404).json({ msg: 'Refresh token is not valid' });
     }
 
-    const accessToken = jwt.sign(user, process.env.ACCESS_SECRET_KEY, { expiresIn: '15m' });
+    jwt.verify(token.token, process.env.REFRESH_SECRET_KEY, (error, user) => {
+      if (error) {
+        response.status(500).json({ msg: 'invalid refresh token' });
+      }
 
-    return response.status(200).json({ accessToken: accessToken });
-  });
+      const accessToken = jwt.sign(user, process.env.ACCESS_SECRET_KEY, { expiresIn: '15m' });
+
+      return response.status(200).json({ accessToken: accessToken });
+    });
+  } catch (error) {
+    response.status(500).json({ msg: 'error while creating token' });
+  }
+
 };
