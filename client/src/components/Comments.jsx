@@ -73,7 +73,7 @@ const Comments = ({ post }) => {
       <Box>
         {
           comments && comments.length > 0 && comments.map(comment => (
-            <CommentDetails comment={comment} setToggle={setToggle} />
+            <CommentDetails key={comment._id} comment={comment} setToggle={setToggle} />
           ))
         }
       </Box>
