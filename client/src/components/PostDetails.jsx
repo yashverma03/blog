@@ -36,15 +36,16 @@ const Details = styled(Typography)`
 `;
 
 const PostDetails = ({ post }) => {
-  const url = post.picture ? post.picture : 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=752&q=80';
+  const defaultImage = 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=752&q=80';
+  const postImage = post.picture ? post.picture : defaultImage;
 
   const addEllipsis = (str, limit) => {
-    return str.length > limit ? str.substring(0, limit) + '...' : str;
+    return str.length > limit ? str.substring(0, limit) + ' ...' : str;
   };
 
   return (
     <Container>
-      <Image src={url} alt='post' />
+      <Image src={postImage} alt={defaultImage} />
       <Text>{post.categories}</Text>
       <Heading>{addEllipsis(post.title, 20)}</Heading>
       <Text>Author: {post.username}</Text>
