@@ -17,32 +17,30 @@ const App = () => {
   const [isAuthenticated, isUserAuthenticated] = useState(false);
 
   return (
-    <div>
-      <DataProvider>
-        <BrowserRouter>
-          <Box style={{ marginTop: 64 }}>
-            <Header isAuthenticated={isAuthenticated} />
-            <Routes>
+    <DataProvider>
+      <BrowserRouter>
+        <Box style={{ marginTop: 64 }}>
+          <Header isAuthenticated={isAuthenticated} />
+          <Routes>
 
-              {/* Public routes */}
-              <Route path='/account' element={<Login isUserAuthenticated={isUserAuthenticated} />} />
-              <Route path='/about' element={<About />} />
-              <Route path='/contact' element={<Contact />} />
-              <Route path='/' element={<Home />} />
+            {/* Public routes */}
+            <Route path='/account' element={<Login isUserAuthenticated={isUserAuthenticated} />} />
+            <Route path='/about' element={<About />} />
+            <Route path='/contact' element={<Contact />} />
+            <Route path='/' element={<Home />} />
 
-              {/* Private routes */}
-              <Route path='/' element={<PrivateRoute isAuthenticated={isAuthenticated} />}>
-                <Route path='/create' element={<PostCreate />} />
-                <Route path='/details/:id' element={<PostDetailView />} />
-                <Route path='/update/:id' element={<PostUpdate />} />
-              </Route>
+            {/* Private routes */}
+            <Route path='/' element={<PrivateRoute isAuthenticated={isAuthenticated} />}>
+              <Route path='/create' element={<PostCreate />} />
+              <Route path='/details/:id' element={<PostDetailView />} />
+              <Route path='/update/:id' element={<PostUpdate />} />
+            </Route>
 
-            </Routes>
+          </Routes>
 
-          </Box>
-        </BrowserRouter>
-      </DataProvider>
-    </div>
+        </Box>
+      </BrowserRouter>
+    </DataProvider>
   );
 };
 
