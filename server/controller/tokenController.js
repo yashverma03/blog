@@ -4,6 +4,7 @@ import tokenModel from '../model/tokenModel.js';
 
 dotenv.config();
 
+// Middleware
 export const authenticateToken = (request, response, next) => {
   const authHeader = request.headers['authorization'];
   const token = authHeader && authHeader.split(' ')[1];
