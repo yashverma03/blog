@@ -1,10 +1,10 @@
 import express from 'express';
-import { createPost, updatePost, deletePost, getPost, getAllPosts } from '../controller/postController.js';
-import { uploadImage, getImage } from '../controller/imageController.js';
-import { newComment, getComments, deleteComment } from '../controller/commentController.js';
-import { loginUser, signupUser, logoutUser } from '../controller/userController.js';
-import { authenticateToken, createNewToken } from '../controller/tokenController.js';
-import upload from '../controller/fileUpload.js';
+import { createPost, updatePost, deletePost, getPost, getAllPosts } from '../controller/post.js';
+import { uploadImage, getImage } from '../controller/image.js';
+import { newComment, getComments, deleteComment } from '../controller/comment.js';
+import { loginUser, signupUser, logoutUser } from '../controller/user.js';
+import { authenticateToken, createNewToken } from '../controller/token.js';
+import upload from '../middleware/fileUpload.js';
 
 const router = express.Router();
 

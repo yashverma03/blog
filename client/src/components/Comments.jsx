@@ -17,7 +17,7 @@ const Image = styled('img')({
 
 const StyledTextArea = styled(TextareaAutosize)`
   height: 100px !important;
-  width: 100%; 
+  width: 100%;
   margin: 0 20px;
 `;
 
@@ -60,22 +60,35 @@ const Comments = ({ post }) => {
   const addComment = async () => {
     await API.newComment(comment);
     setComment(initialValue);
-    setToggle(prev => !prev);
+    setToggle((prev) => !prev);
   };
 
   return (
     <Box>
       <Container>
         <Image src={url} alt='dp' />
-        <StyledTextArea rowsMin={5} placeholder="what's on your mind?" onChange={(e) => handleChange(e)} value={comment.comments} />
-        <Button variant='contained' color='primary' size='medium' style={{ height: 40 }} onClick={(e) => addComment(e)}> Post </Button>
+        <StyledTextArea
+          rowsMin={5}
+          placeholder="what's on your mind?"
+          onChange={(e) => handleChange(e)}
+          value={comment.comments}
+        />
+        <Button
+          variant='contained'
+          color='primary'
+          size='medium'
+          style={{ height: 40 }}
+          onClick={(e) => addComment(e)}
+        >
+          Post
+        </Button>
       </Container>
       <Box>
-        {
-          comments && comments.length > 0 && comments.map(comment => (
+        {comments &&
+          comments.length > 0 &&
+          comments.map((comment) => (
             <CommentDetails key={comment._id} comment={comment} setToggle={setToggle} />
-          ))
-        }
+          ))}
       </Box>
     </Box>
   );

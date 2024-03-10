@@ -38,7 +38,7 @@ const About = () => {
             </Link>
           </Box>
         </Text>
-        
+
         <Text variant='h5'>
           Need something built or simply want to have chat? Reach out to me on
           <Box component='span' style={{ marginLeft: 5 }}>
@@ -47,7 +47,11 @@ const About = () => {
             </Link>
           </Box>
           or send me an Email
-          <Link href='mailto:vermayash2003@gmail.com?Subject=This is a subject' target='_blank' color='inherit'>
+          <Link
+            href='mailto:vermayash2003@gmail.com?Subject=This is a subject'
+            target='_blank'
+            color='inherit'
+          >
             <Email />
           </Link>
         </Text>

@@ -3,5 +3,5 @@ export const categoriesData = [
   { id: 3, type: 'Sports' },
   { id: 4, type: 'Tech' },
   { id: 1, type: 'Music' },
-  { id: 5, type: 'Fashion' },
+  { id: 5, type: 'Fashion' }
 ];

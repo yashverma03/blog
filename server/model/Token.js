@@ -3,10 +3,10 @@ import mongoose from 'mongoose';
 const TokenSchema = mongoose.Schema({
   token: {
     type: String,
-    required: true,
-  },
+    required: true
+  }
 });
 
-const tokenModel = mongoose.model('token', TokenSchema);
+const Token = mongoose.model('token', TokenSchema);
 
-export default tokenModel;
+export default Token;

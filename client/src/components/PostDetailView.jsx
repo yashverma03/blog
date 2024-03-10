@@ -10,7 +10,7 @@ const Container = styled(Box)(({ theme }) => ({
   margin: '50px 100px',
   [theme.breakpoints.down('md')]: {
     margin: 0
-  },
+  }
 }));
 
 const Image = styled('img')({
@@ -47,11 +47,12 @@ const Author = styled(Box)(({ theme }) => ({
   margin: '20px 0',
   [theme.breakpoints.down('sm')]: {
     display: 'block'
-  },
+  }
 }));
 
 const PostDetailView = () => {
-  const url = 'https://images.unsplash.com/photo-1543128639-4cb7e6eeef1b?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8bGFwdG9wJTIwc2V0dXB8ZW58MHx8MHx8&ixlib=rb-1.2.1&w=1000&q=80';
+  const url =
+    'https://images.unsplash.com/photo-1543128639-4cb7e6eeef1b?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8bGFwdG9wJTIwc2V0dXB8ZW58MHx8MHx8&ixlib=rb-1.2.1&w=1000&q=80';
 
   const [post, setPost] = useState({});
   const { account } = useContext(DataContext);
@@ -68,7 +69,7 @@ const PostDetailView = () => {
     };
 
     fetchData();
-  }, []);
+  }, [id]);
 
   const deleteBlog = async () => {
     await API.deletePost(post._id);
@@ -79,23 +80,29 @@ const PostDetailView = () => {
     <Container>
       <Image src={post.picture || url} alt='post' />
       <Box style={{ float: 'right' }}>
-        {
-          account.username === post.username &&
+        {account.username === post.username && (
           <>
             <Link to={`/update/${post._id}`}>
               <EditIcon color='primary' />
             </Link>
             <DeleteIcon onClick={() => deleteBlog()} color='error' />
           </>
-        }
+        )}
       </Box>
       <Heading>{post.title}</Heading>
 
       <Author>
-        <Link to={`/?username=${post.username}`} style={{ textDecoration: 'none', color: 'inherit' }}>
-          <Typography>Author: <span style={{ fontWeight: 600 }}>{post.username}</span></Typography>
+        <Link
+          to={`/?username=${post.username}`}
+          style={{ textDecoration: 'none', color: 'inherit' }}
+        >
+          <Typography>
+            Author: <span style={{ fontWeight: 600 }}>{post.username}</span>
+          </Typography>
         </Link>
-        <Typography style={{ marginLeft: 'auto' }}>{new Date(post.createdDate).toDateString()}</Typography>
+        <Typography style={{ marginLeft: 'auto' }}>
+          {new Date(post.createdDate).toDateString()}
+        </Typography>
       </Author>
 
       <Typography>{post.description}</Typography>

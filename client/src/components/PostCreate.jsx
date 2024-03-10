@@ -57,7 +57,9 @@ const PostCreate = () => {
   const [file, setFile] = useState('');
   const { account } = useContext(DataContext);
 
-  const url = post.picture ? post.picture : 'https://images.unsplash.com/photo-1543128639-4cb7e6eeef1b?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8bGFwdG9wJTIwc2V0dXB8ZW58MHx8MHx8&ixlib=rb-1.2.1&w=1000&q=80';
+  const url = post.picture
+    ? post.picture
+    : 'https://images.unsplash.com/photo-1543128639-4cb7e6eeef1b?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8bGFwdG9wJTIwc2V0dXB8ZW58MHx8MHx8&ixlib=rb-1.2.1&w=1000&q=80';
 
   useEffect(() => {
     const getImage = async () => {
@@ -74,7 +76,7 @@ const PostCreate = () => {
     getImage();
     post.categories = location.search?.split('=')[1] || 'All';
     post.username = account.username;
-  }, [file]);
+  }, [file, account.username, location.search, post]);
 
   const savePost = async () => {
     await API.createPost(post);
@@ -93,12 +95,24 @@ const PostCreate = () => {
         <label htmlFor='fileInput'>
           <Add fontSize='large' color='action' />
         </label>
-        <input type='file' id='fileInput' style={{ display: 'none' }} onChange={(e) => setFile(e.target.files[0])} />
+        <input
+          type='file'
+          id='fileInput'
+          style={{ display: 'none' }}
+          onChange={(e) => setFile(e.target.files[0])}
+        />
         <InputTextField onChange={(e) => handleChange(e)} name='title' placeholder='Title' />
-        <Button onClick={() => savePost()} variant='contained' color='primary'> Publish </Button>
+        <Button onClick={() => savePost()} variant='contained' color='primary'>
+          Publish
+        </Button>
       </StyledFormControl>
 
-      <Textarea minRows={5} placeholder='Tell your story...' name='description' onChange={(e) => handleChange(e)} />
+      <Textarea
+        minRows={5}
+        placeholder='Tell your story...'
+        name='description'
+        onChange={(e) => handleChange(e)}
+      />
     </Container>
   );
 };

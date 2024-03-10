@@ -5,15 +5,14 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 const url = process.env.BASE_URL;
-
-let gfs, gridfsBucket;
 const conn = mongoose.connection;
+let gfs;
+let gridfsBucket;
 
 conn.once('open', () => {
   gridfsBucket = new mongoose.mongo.GridFSBucket(conn.db, {
     bucketName: 'fs'
   });
-  
   gfs = grid(conn.db, mongoose.mongo);
   gfs.collection('fs');
 });
@@ -24,7 +23,6 @@ export const uploadImage = (request, response) => {
   }
 
   const imageUrl = `${url}/file/${request.file.filename}`;
-
   response.status(200).json(imageUrl);
 };
 

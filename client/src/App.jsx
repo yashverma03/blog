@@ -13,7 +13,6 @@ import PrivateRoute from './utils/PrivateRoute';
 import Header from './components/Header';
 
 const App = () => {
-
   const [isAuthenticated, isUserAuthenticated] = useState(false);
 
   return (
@@ -22,7 +21,6 @@ const App = () => {
         <Box style={{ marginTop: 64 }}>
           <Header isAuthenticated={isAuthenticated} />
           <Routes>
-
             {/* Public routes */}
             <Route path='/account' element={<Login isUserAuthenticated={isUserAuthenticated} />} />
             <Route path='/about' element={<About />} />
@@ -35,9 +33,7 @@ const App = () => {
               <Route path='/details/:id' element={<PostDetailView />} />
               <Route path='/update/:id' element={<PostUpdate />} />
             </Route>
-
           </Routes>
-
         </Box>
       </BrowserRouter>
     </DataProvider>

@@ -3,22 +3,22 @@ import mongoose from 'mongoose';
 const CommentSchema = mongoose.Schema({
   name: {
     type: String,
-    required: true,
+    required: true
   },
   postId: {
     type: String,
-    required: true,
+    required: true
   },
   date: {
     type: String,
-    required: true,
+    required: true
   },
   comments: {
     type: String,
-    required: true,
-  },
+    required: true
+  }
 });
 
-const commentModel = mongoose.model('comment', CommentSchema);
+const Comment = mongoose.model('comment', CommentSchema);
 
-export default commentModel;
+export default Comment;

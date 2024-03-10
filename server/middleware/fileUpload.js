@@ -16,9 +16,9 @@ const storage = new GridFsStorage({
 
     return {
       bucketName: 'photos',
-      filename: `${Date.now()}-blog-${file.originalname}`,
+      filename: `${Date.now()}-blog-${file.originalname}`
     };
-  },
+  }
 });
 
 export default multer({ storage });

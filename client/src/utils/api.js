@@ -94,7 +94,7 @@ for (const [key, value] of Object.entries(axiosAPICalls)) {
       data: value.method === 'delete' ? '' : body,
       TYPE: getType(value, body),
       headers: {
-        authorization: getAccessToken(),
+        authorization: getAccessToken()
       }
     });
 }

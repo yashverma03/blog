@@ -4,29 +4,29 @@ const PostSchema = mongoose.Schema({
   title: {
     type: String,
     required: true,
-    unique: true,
+    unique: true
   },
   description: {
     type: String,
-    required: true,
+    required: true
   },
   picture: {
     type: String,
-    required: false,
+    required: false
   },
   username: {
     type: String,
-    required: true,
+    required: true
   },
   categories: {
     type: Array,
-    required: false,
+    required: false
   },
   createdDate: {
-    type: Date,
-  },
+    type: Date
+  }
 });
 
-const postModel = mongoose.model('post', PostSchema);
+const Post = mongoose.model('post', PostSchema);
 
-export default postModel;
+export default Post;

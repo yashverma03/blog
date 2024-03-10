@@ -23,20 +23,19 @@ const Posts = () => {
 
   return (
     <>
-      {
-        posts?.length ? posts.map(post => (
-          // key=index,
+      {posts?.length ? (
+        posts.map((post) => (
           <Grid item lg={3} sm={4} xs={12}>
             <Link style={{ textDecoration: 'none', color: 'inherit' }} to={`details/${post._id}`}>
               <PostDetails key={post._id} post={post} />
             </Link>
           </Grid>
-        )) : (
-          <Box style={{ color: '878787', margin: '30px 80px', fontSize: 18 }}>
-            No data is available for selected category
-          </Box>
-        )
-      }
+        ))
+      ) : (
+        <Box style={{ color: '878787', margin: '30px 80px', fontSize: 18 }}>
+          No data is available for selected category
+        </Box>
+      )}
     </>
   );
 };

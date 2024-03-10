@@ -2,7 +2,7 @@ import { AppBar, Toolbar, styled } from '@mui/material';
 import { Link } from 'react-router-dom';
 
 const Component = styled(AppBar)`
-  background: #FFFFFF;
+  background: #ffffff;
   color: black;
 `;
 

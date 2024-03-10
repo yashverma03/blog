@@ -50,14 +50,12 @@ const initialPost = {
 
 const PostUpdate = () => {
   const navigate = useNavigate();
-
+  const { id } = useParams();
   const [post, setPost] = useState(initialPost);
   const [file, setFile] = useState('');
-  const [imageURL, setImageURL] = useState('');
 
-  const { id } = useParams();
-
-  const url = 'https://images.unsplash.com/photo-1543128639-4cb7e6eeef1b?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8bGFwdG9wJTIwc2V0dXB8ZW58MHx8MHx8&ixlib=rb-1.2.1&w=1000&q=80';
+  const url =
+    'https://images.unsplash.com/photo-1543128639-4cb7e6eeef1b?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8bGFwdG9wJTIwc2V0dXB8ZW58MHx8MHx8&ixlib=rb-1.2.1&w=1000&q=80';
 
   useEffect(() => {
     const fetchData = async () => {
@@ -68,7 +66,7 @@ const PostUpdate = () => {
     };
 
     fetchData();
-  }, []);
+  }, [id]);
 
   useEffect(() => {
     const getImage = async () => {
@@ -80,13 +78,12 @@ const PostUpdate = () => {
         const response = await API.uploadFile(data);
         if (response.isSuccess) {
           post.picture = response.data;
-          setImageURL(response.data);
         }
       }
     };
 
     getImage();
-  }, [file]);
+  }, [file, post]);
 
   const updateBlogPost = async () => {
     await API.updatePost(post);
@@ -105,12 +102,30 @@ const PostUpdate = () => {
         <label htmlFor='fileInput'>
           <Add fontSize='large' color='action' />
         </label>
-        <input type='file' id='fileInput' style={{ display: 'none' }} onChange={(e) => setFile(e.target.files[0])} />
-        <InputTextField onChange={(e) => handleChange(e)} value={post.title} name='title' placeholder='Title' />
-        <Button onClick={() => updateBlogPost()} variant='contained' color='primary'> Update </Button>
+        <input
+          type='file'
+          id='fileInput'
+          style={{ display: 'none' }}
+          onChange={(e) => setFile(e.target.files[0])}
+        />
+        <InputTextField
+          onChange={(e) => handleChange(e)}
+          value={post.title}
+          name='title'
+          placeholder='Title'
+        />
+        <Button onClick={() => updateBlogPost()} variant='contained' color='primary'>
+          Update
+        </Button>
       </StyledFormControl>
 
-      <StyledTextArea rowsMin={5} placeholder='Tell your story...' name='description' onChange={(e) => handleChange(e)} value={post.description} />
+      <StyledTextArea
+        rowsMin={5}
+        placeholder='Tell your story...'
+        name='description'
+        onChange={(e) => handleChange(e)}
+        value={post.description}
+      />
     </Container>
   );
 };

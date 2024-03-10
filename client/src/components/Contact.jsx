@@ -34,7 +34,11 @@ const Contact = () => {
             <LinkedInIcon />
           </Link>
           or send me an Email
-          <Link href='mailto:vermayash2003@gmail.com?Subject=This is a subject' target='_blank' color='inherit'>
+          <Link
+            href='mailto:vermayash2003@gmail.com?Subject=This is a subject'
+            target='_blank'
+            color='inherit'
+          >
             <Email />
           </Link>
         </Text>

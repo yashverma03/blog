@@ -6,7 +6,7 @@ import { DataContext } from '../utils/DataProvider';
 
 const Component = styled(Box)`
   margin-top: 30px;
-  background: #F5F5F5;
+  background: #f5f5f5;
   padding: 10px;
 `;
 
@@ -31,12 +31,11 @@ const DeleteIcon = styled(Delete)`
 `;
 
 const CommentDetails = ({ comment, setToggle }) => {
-
   const { account } = useContext(DataContext);
 
   const removeComment = async () => {
     await API.deleteComment(comment._id);
-    setToggle(prev => !prev);
+    setToggle((prev) => !prev);
   };
 
   return (
