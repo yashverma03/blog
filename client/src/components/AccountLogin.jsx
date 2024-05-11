@@ -134,13 +134,13 @@ const AccountLogin = ({ isUserAuthenticated }) => {
       <Box>
         <Image src={imageURL} alt='blog' />
         {account === 'login' ? (
-          <Wrapper>
+          <Wrapper key='login'>
             <TextField
               variant='standard'
               value={login.username}
               onChange={(e) => onValueChange(e)}
               name='username'
-              label='Enter Username'
+              label='Username  (test email: test@gmail.com)'
             />
             <TextField
               variant='standard'
@@ -148,7 +148,7 @@ const AccountLogin = ({ isUserAuthenticated }) => {
               value={login.password}
               onChange={(e) => onValueChange(e)}
               name='password'
-              label='Enter Password'
+              label='Password  (test password: password)'
             />
 
             {error && <Error>{error}</Error>}
@@ -162,7 +162,7 @@ const AccountLogin = ({ isUserAuthenticated }) => {
             </SignupButton>
           </Wrapper>
         ) : (
-          <Wrapper>
+          <Wrapper key='sign-up'>
             <TextField
               variant='standard'
               value={signup.name}
